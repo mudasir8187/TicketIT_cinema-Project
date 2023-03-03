@@ -1,0 +1,29 @@
+cust_dict = {}
+def initcustdict():
+    """Read data file and build a customer dictionary.""" 
+    print("start")
+    cust_file = open("customer.csv","r")
+    line_count=0
+    for record in cust_file:
+        if line_count == 0:
+            line_count += 1
+        else:
+            parsedrecord = record.split(",")
+            cust_id = parsedrecord[0]
+            cust_seg = parsedrecord[3]
+             
+            if parsedrecord[0] not in cust_dict:
+                
+                cust_dict[str(cust_id)]=cust_seg
+                
+    cust_file.close()
+    print("customer dictionary built")
+    #print(cust_dict) 
+
+if __name__ == "__main__":
+    initcustdict()
+    #  code below shows how we use DIRECT ACCESS to required Customer by using a \
+    #  KEY on the DICTIONARY - NO SEQUENTIAL READ of LIST involved.
+    my_custid = int(input("Please enter a valid customer id: "))
+    print("Customer "+  str(my_custid) + " is segment " + cust_dict[str(my_custid)])
+    
